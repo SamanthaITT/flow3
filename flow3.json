@@ -1,0 +1,259 @@
+[
+    {
+        "id": "b593a96026a42b51",
+        "type": "tab",
+        "label": "Flow 3",
+        "disabled": false,
+        "info": "",
+        "env": []
+    },
+    {
+        "id": "b57e486ae5fbb316",
+        "type": "mqtt in",
+        "z": "b593a96026a42b51",
+        "name": "",
+        "topic": "sic/flow3/temp",
+        "qos": "2",
+        "datatype": "auto",
+        "broker": "ae2aacdf3f5a39a4",
+        "nl": false,
+        "rap": true,
+        "rh": 0,
+        "inputs": 0,
+        "x": 120,
+        "y": 200,
+        "wires": [
+            [
+                "b3e60aa6da22692f"
+            ]
+        ]
+    },
+    {
+        "id": "b3e60aa6da22692f",
+        "type": "json",
+        "z": "b593a96026a42b51",
+        "name": "",
+        "property": "payload",
+        "action": "obj",
+        "pretty": false,
+        "x": 310,
+        "y": 200,
+        "wires": [
+            [
+                "40f433c2b9bb5987",
+                "675cd19453bcc877",
+                "c6217df49c4108be"
+            ]
+        ]
+    },
+    {
+        "id": "40f433c2b9bb5987",
+        "type": "function",
+        "z": "b593a96026a42b51",
+        "name": "",
+        "func": "msg.payload=msg.payload.id;\nreturn msg;",
+        "outputs": 1,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 460,
+        "y": 140,
+        "wires": [
+            [
+                "89f2648f59a640b7",
+                "f03701fef60d744b"
+            ]
+        ]
+    },
+    {
+        "id": "675cd19453bcc877",
+        "type": "function",
+        "z": "b593a96026a42b51",
+        "name": "Temperatura",
+        "func": "msg.payload=msg.payload.temp;\nreturn msg;",
+        "outputs": 1,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 470,
+        "y": 220,
+        "wires": [
+            [
+                "79eeaff7784702c0"
+            ]
+        ]
+    },
+    {
+        "id": "c6217df49c4108be",
+        "type": "function",
+        "z": "b593a96026a42b51",
+        "name": "",
+        "func": "msg.topic = msg.payload.id;\nmsg.payload = msg.payload.Temp;\nreturn msg;",
+        "outputs": 1,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 460,
+        "y": 300,
+        "wires": [
+            [
+                "fb33ac021b673439"
+            ]
+        ]
+    },
+    {
+        "id": "89f2648f59a640b7",
+        "type": "ui_text_input",
+        "z": "b593a96026a42b51",
+        "name": "",
+        "label": "Nombre",
+        "tooltip": "",
+        "group": "dd70abe0.14cb38",
+        "order": 7,
+        "width": 0,
+        "height": 0,
+        "passthru": true,
+        "mode": "text",
+        "delay": 300,
+        "topic": "topic",
+        "topicType": "msg",
+        "x": 640,
+        "y": 140,
+        "wires": [
+            []
+        ]
+    },
+    {
+        "id": "79eeaff7784702c0",
+        "type": "ui_gauge",
+        "z": "b593a96026a42b51",
+        "name": "",
+        "group": "dd70abe0.14cb38",
+        "order": 8,
+        "width": 0,
+        "height": 0,
+        "gtype": "gage",
+        "title": "Temperatura",
+        "label": "C- units",
+        "format": "{{value}}",
+        "min": "5",
+        "max": "40",
+        "colors": [
+            "#00b500",
+            "#e6e600",
+            "#ca3838"
+        ],
+        "seg1": "",
+        "seg2": "",
+        "x": 660,
+        "y": 220,
+        "wires": []
+    },
+    {
+        "id": "fb33ac021b673439",
+        "type": "ui_chart",
+        "z": "b593a96026a42b51",
+        "name": "",
+        "group": "dd70abe0.14cb38",
+        "order": 9,
+        "width": "5",
+        "height": "5",
+        "label": "chart",
+        "chartType": "line",
+        "legend": "true",
+        "xformat": "HH:mm:ss",
+        "interpolate": "linear",
+        "nodata": "",
+        "dot": false,
+        "ymin": "5",
+        "ymax": "40",
+        "removeOlder": "15",
+        "removeOlderPoints": "",
+        "removeOlderUnit": "60",
+        "cutout": 0,
+        "useOneColor": false,
+        "useUTC": false,
+        "colors": [
+            "#1f77b4",
+            "#aec7e8",
+            "#ff7f0e",
+            "#2ca02c",
+            "#98df8a",
+            "#d62728",
+            "#ff9896",
+            "#9467bd",
+            "#c5b0d5"
+        ],
+        "outputs": 1,
+        "useDifferentColor": false,
+        "x": 660,
+        "y": 300,
+        "wires": [
+            []
+        ]
+    },
+    {
+        "id": "f03701fef60d744b",
+        "type": "debug",
+        "z": "b593a96026a42b51",
+        "name": "",
+        "active": true,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "payload",
+        "targetType": "msg",
+        "statusVal": "",
+        "statusType": "auto",
+        "x": 650,
+        "y": 60,
+        "wires": []
+    },
+    {
+        "id": "ae2aacdf3f5a39a4",
+        "type": "mqtt-broker",
+        "name": "",
+        "broker": "35.157.158.119",
+        "port": "1883",
+        "clientid": "spjc10",
+        "autoConnect": true,
+        "usetls": false,
+        "protocolVersion": "4",
+        "keepalive": "60",
+        "cleansession": true,
+        "birthTopic": "",
+        "birthQos": "0",
+        "birthPayload": "",
+        "birthMsg": {},
+        "closeTopic": "",
+        "closeQos": "0",
+        "closePayload": "",
+        "closeMsg": {},
+        "willTopic": "",
+        "willQos": "0",
+        "willPayload": "",
+        "willMsg": {},
+        "sessionExpiry": ""
+    },
+    {
+        "id": "dd70abe0.14cb38",
+        "type": "ui_group",
+        "name": "Temperatura -Etiqueta",
+        "tab": "6d54a11.6b2c0e",
+        "order": 5,
+        "disp": true,
+        "width": "5",
+        "collapse": false
+    },
+    {
+        "id": "6d54a11.6b2c0e",
+        "type": "ui_tab",
+        "name": "Temperatura",
+        "icon": "dashboard",
+        "disabled": false,
+        "hidden": false
+    }
+]
